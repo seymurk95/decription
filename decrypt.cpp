@@ -1,9 +1,7 @@
 #ifndef DECRYPT_CPP
 #define DECRYPT_CPP
 
-
 #include "decrypt.hpp"
-
 
 DECR_CLASS_ENG::DECR_CLASS_ENG(const string& encrypted_text) : encrypted_text(encrypted_text) {}
 
@@ -13,7 +11,6 @@ void DECR_CLASS_ENG::decrypt(){
     this->get_decrypted_text_byfreq(true);
 
     user_mod(this);
-
 }
 
 void DECR_CLASS_ENG::decrypt_byfreq() {
@@ -67,6 +64,16 @@ void DECR_CLASS_ENG::decrypt_byusermod() {
             }
         }
 }
+
+string DECR_CLASS_ENG::get_encrypted_text(bool enable_output) const{
+        if (enable_output) {
+            cout << "\n\n\n----------------------------------------------[Encrypted Text BEGIN]----------------------------------------------:\n"
+                 << encrypted_text <<
+                 "\n\n\n----------------------------------------------[Encrypted Text END]----------------------------------------------\n\n\n";
+        }
+        return encrypted_text;
+}
+
 
 // Метод для получения расшифрованного текста
 string DECR_CLASS_ENG::get_decrypted_text_byfreq(bool enable_output) const {
@@ -228,6 +235,8 @@ void user_mod(DECR_CLASS_ENG* pchiper){
         pchiper->get_decrypted_text_byusermod(true);
 
 
+
+
         user_mod(pchiper);
 
     }
@@ -251,7 +260,6 @@ void DECR_CLASS_RUS::decrypt(){
     this->get_decrypted_text_byfreq(true);
 
     user_mod(this);
-
 }
 
 void DECR_CLASS_RUS::decrypt_byfreq() {
@@ -304,6 +312,16 @@ void DECR_CLASS_RUS::decrypt_byusermod() {
                 }
             }
         }
+}
+
+
+wstring DECR_CLASS_RUS::get_encrypted_text(bool enable_output) const{
+        if (enable_output) {
+            wcout << "\n\n\n----------------------------------------------[Encrypted Text BEGIN]----------------------------------------------:\n"
+                 << encrypted_text <<
+                 "\n\n\n----------------------------------------------[Encrypted Text END]----------------------------------------------\n\n\n";
+        }
+        return encrypted_text;
 }
 
 // Метод для получения расшифрованного текста
@@ -381,7 +399,7 @@ vector<DECR_CLASS_RUS::LetterFreq> DECR_CLASS_RUS::sort_by_freq(const unordered_
         return sorted_freq;
 } // Вспомогательная функция для сортировки частот
 
-// Инициализация статического поля для частот букв в английском языке
+// Инициализация статического поля для частот букв в русском языке
 const unordered_map<wchar_t, double> DECR_CLASS_RUS::RussianLang_letter_freq = {
         {L'О', 10.97}, {L'Е', 8.45}, {L'А', 8.01},
         {L'И', 7.35}, {L'Н', 6.70}, {L'Т', 6.26},
@@ -460,17 +478,19 @@ void user_mod(DECR_CLASS_RUS* pchiper){
     cin >> control_key; cout<<"\n";
 
     if(control_key == 'y'){
-        char old_letter, new_letter;
+        wchar_t old_letter, new_letter;
 
-        cout<<"Enter the letter you want to replace: ";
-        cin>>old_letter; cout<<"\n";
+        wcout<<"Enter the letter you want to replace: ";
+        wcin>>old_letter; wcout<<"\n";
 
-        cout<<"Enter the letter you want to replace with: ";
-        cin>>new_letter; cout<<"\n";
+        wcout<<"Enter the letter you want to replace with: ";
+        wcin>>new_letter; wcout<<"\n";
 
         pchiper->user_insert(old_letter, new_letter);
         pchiper->decrypt_byusermod();
         pchiper->get_decrypted_text_byusermod(true);
+
+
 
 
         user_mod(pchiper);
@@ -478,7 +498,6 @@ void user_mod(DECR_CLASS_RUS* pchiper){
     }
 
 }
-
 
 
 
