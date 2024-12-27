@@ -8,10 +8,10 @@ The program takes an encrypted text file as input and processes it using the imp
 ## Structure
 
 The project consists of the following files:
-- `main.cpp`: Contains the user interface logic (input/output).
-- `decrypt.hpp`: Header file defining the calculator's functions.
-- `decrypt.cpp`: Implementation of the calculator's core logic.
- - `test.cpp`: Unit tests for the calculator logic using 'doctest'.(https://github.com/doctest/doctest)  
+- `main.cpp`: Contains the user interface logic.
+- `decrypt.hpp`: Header file defining the decryptor's functions.
+- `decrypt.cpp`: Implementation of the decryptor's core logic.
+ - `test.cpp`: Unit tests for the decryptor logic using 'doctest'.(https://github.com/doctest/doctest)  
 - `CMakeLists.txt`: Build configuration for CMake.
 
 
